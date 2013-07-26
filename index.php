@@ -22,7 +22,6 @@
     </head>
     <body>
     <center>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -31,23 +30,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="index.php">WebImagen</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="php/inicioSesion.php">Inciar Sesion</a>
+            </li>
+            <li><a href="php/registro.php">Registrarse</a></li>
+            <li><a href="php/perfil.php">Ir a mi perfil</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
     <div class="container">
-    <a href="index.php"><h1>WebImagen</h1></a>
-    <a href="php/perfil.php">Ir a mi perfil</a>
-    <a href="php/login.php">Inciar Sesion</a>
-    <a href="php/registro.php">Registrarse</a>
-    <br><br>
     <?php
     require_once ('accesoDB/webimagenDAO.php');
     $webImagen = WebImagenDAO::getInstancia();

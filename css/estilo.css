@@ -3,3 +3,8 @@ form {
 	padding : 0;
 	display:inline;
 }
+
+body {
+	padding-top: 60px;
+	background-color: grey;
+}

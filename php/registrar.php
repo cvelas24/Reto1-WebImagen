@@ -13,7 +13,6 @@
 <body>
 	<center>
 		<a href="../index.php"><h1>WebImagen</h1></a>
-	</center>
 	<?php
 	require_once ('../accesoDB/webimagenDAO.php');
 	//Registrar un nuevo usuario
@@ -27,5 +26,6 @@
 		$login, $password, $nombre, $apellido, $email);
 	echo "<h3>$msg</h3>"
 	?>
+	</center>
 </body>
 </html>
