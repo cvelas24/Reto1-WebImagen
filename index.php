@@ -1,5 +1,5 @@
 <?php
-    require_once ('../accesoDB/webimagenDAO.php');
+    require_once ('accesoDB/webimagenDAO.php');
     session_start();
 ?>
 <!DOCTYPE HTML>
