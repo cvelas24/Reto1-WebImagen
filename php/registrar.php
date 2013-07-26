@@ -1,3 +1,6 @@
+<?php
+	require_once ('../accesoDB/webimagenDAO.php');
+?>
 <!DOCTYPE HTML>
 <html>
 <head>

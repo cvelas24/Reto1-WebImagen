@@ -1,3 +1,7 @@
+<?php
+    require_once ('../accesoDB/webimagenDAO.php');
+    session_start();
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -7,17 +11,8 @@
         initial-scale=1.0">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <style>
-          body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-          }
-        </style>
         <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
         <link rel="stylesheet" href="css/estilo.css" />
-        <script src="js/jquery.js" type="text/javascript">
-        </script>
-        <script src="js/funcionalidad.js" type="text/javascript">
-        </script>
         <title>WebImagen</title>
     </head>
     <body>
@@ -48,7 +43,6 @@
     </div>
     <div class="container">
     <?php
-    require_once ('accesoDB/webimagenDAO.php');
     $webImagen = WebImagenDAO::getInstancia();
     $imagenes = $webImagen -> obtenerImgsInicio();
     $maxImgs = 10;
@@ -67,6 +61,13 @@
     ?>
     </center>
     </div> <!-- /container -->
+
+
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/jquery.js" type="text/javascript">
+    </script>
+    <script src="js/funcionalidad.js" type="text/javascript">
+    </script>
 </body>
 </html>

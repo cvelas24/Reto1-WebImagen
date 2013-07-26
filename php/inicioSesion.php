@@ -14,12 +14,13 @@
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
 	<h3>Registro</h3>
-	<form action="registrar.php" method="post"
+	<form action="iniciarSesion.php" method="post"
 	enctype="multipart/form-data" onsubmit="">
-		Usuario: <input type="text" name="login" id="login">
-		Contraseña: <input type="password" name="pwd" id="pwd">
+		Usuario: <input type="text" name="login" id="login"><br>
+		Contraseña: <input type="password" name="pwd" id="pwd"><br>
 		<input type="submit" name="submit" value="Iniciar Sesion">
 	</form>
+	<a href="test.php">Test</a>
 	</center>
 </body>
 </html>

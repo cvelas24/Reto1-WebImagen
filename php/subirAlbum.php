@@ -1,3 +1,7 @@
+<?php
+	require_once ('../accesoDB/webimagenDAO.php');
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,7 +19,6 @@
 		<a href="../index.php"><h1>WebImagen</h1></a>
 	</center>
 	<?php
-	require_once ('../accesoDB/webimagenDAO.php');
 	//Subir un nuevo album
 	$idUsuario = 1;
 	$album = $_POST['album'];

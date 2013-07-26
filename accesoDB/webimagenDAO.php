@@ -32,7 +32,19 @@ class WebImagenDAO {
             return "Gracias por registrarte $nombre";
     }
 
-    public function loguearUsuario(){}
+    public function loguearUsuario($login, $password){
+        $query = mysql_query("SELECT nombre FROM 
+            usuarios WHERE login ='$login' AND 
+            password ='$password'");
+        $datos = mysql_fetch_array($query);
+        if(sizeof($datos) > 1){
+            $nombre = $datos[0];
+            return $nombre;
+        }else{
+            return "Error";
+        }
+        
+    }
 
     public function crearAlbum($idUsuario, $nombre, $descripcion){
         $query = mysql_query("INSERT INTO 

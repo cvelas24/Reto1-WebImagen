@@ -1,3 +1,7 @@
+<?php
+	require_once ('../accesoDB/webimagenDAO.php');
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,7 +16,6 @@
 </head>
 <body>
 	<?php
-	require_once ('../accesoDB/webimagenDAO.php');
 	$nombreImagen = $_FILES["imagen"]["name"];
 	$rutaTemporal = $_FILES["imagen"]["tmp_name"];
 	$idAlbum = 2;

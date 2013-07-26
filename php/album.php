@@ -1,3 +1,7 @@
+<?php
+	require_once ('../accesoDB/webimagenDAO.php');
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,7 +20,6 @@
 	<a href="albumes.php">Albumes</a>
 	<a href="perfil.php">Perfil de...</a><br><br>
 	<?php
-	require_once ('../accesoDB/webimagenDAO.php');
     $webImagen = WebImagenDAO::getInstancia();
     $idAlbum = $_POST['idAlbum'];
     $imagenes = $webImagen -> obtenerImgsAlbum($idAlbum);
