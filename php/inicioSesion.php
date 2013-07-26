@@ -20,7 +20,6 @@
 		Contraseña: <input type="password" name="pwd" id="pwd"><br>
 		<input type="submit" name="submit" value="Iniciar Sesion">
 	</form>
-	<a href="test.php">Test</a>
 	</center>
 </body>
 </html>

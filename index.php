@@ -1,6 +1,18 @@
 <?php
     require_once ('accesoDB/webimagenDAO.php');
     session_start();
+    $link1;
+    $link2 = "";
+    if (sizeof($_SESSION) == 0){
+        $link1 = "<a href='php/inicioSesion.php'>
+            Iniciar Sesion</a>";
+        $link2 = "<a href='php/registro.php'>Registrarse</a>";
+    }else{
+        $n = $_SESSION['nombre'];
+        $link1 = "<a href='php/perfil.php'>$n</a>";
+        $link2 = "<a href='php/cerrarSesion.php'>
+            Cerrar Sesion</a>";
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -31,17 +43,15 @@
             <li class="active">
                 <a href="#">Home</a>
             </li>
-            <li>
-                <a href="php/inicioSesion.php">Inciar Sesion</a>
-            </li>
-            <li><a href="php/registro.php">Registrarse</a></li>
-            <li><a href="php/perfil.php">Ir a mi perfil</a></li>
+            <li><?php echo $link1; ?></li>
+            <li><?php echo $link2; ?></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-    <div class="container">
+    <h2>Bienvenido a WebImagen!</h2><br>
+    <!--<div class="container">-->
     <?php
     $webImagen = WebImagenDAO::getInstancia();
     $imagenes = $webImagen -> obtenerImgsInicio();
@@ -60,7 +70,7 @@
     echo "<br><br>";
     ?>
     </center>
-    </div> <!-- /container -->
+    <!--</div> -->
 
 
     <script src="js/bootstrap.min.js"></script>

@@ -21,8 +21,8 @@
 	<?php
 	//Cargar las fotos desde la db
     $webImagen = WebImagenDAO::getInstancia();
-    $idUsuario = 1;
-    $albumes = $webImagen -> obtenerAlbumes($idUsuario);
+    $login = $_SESSION['login'];
+    $albumes = $webImagen -> obtenerAlbumes($login);
 	for($i = sizeof($albumes)-1; $i >= 0; $i--){
 		$idAlbum = $albumes[$i]['id'];
 		$nombre = $albumes[$i]['nombre'];
@@ -53,6 +53,7 @@
 		</td>
 	</tr>
 	</table>
+	<input type='hidden' name='login' value='<?php echo $login?>'>
 	<input type="submit" name="submit" value="Cargar">
 	</form>
 	</center>

@@ -20,13 +20,14 @@
 	<?php
 	//Registrar un nuevo usuario
 	$login = $_POST['login'];
-	$_SESSION["login"] = $login;
 	$password = $_POST['pwd'];
 	$webImagen = WebImagenDAO::getInstancia();
 	$nombre = $webImagen -> loguearUsuario($login, $password);
+	//Guardar nombre y login en sesion
+	$_SESSION["login"] = $login;
+	$_SESSION["nombre"] = $nombre;
 	echo "<h3>Bienvenido, $nombre</h3>"
 	?>
-	<a href="test.php">Test</a>
 	</center>
 </body>
 </html>

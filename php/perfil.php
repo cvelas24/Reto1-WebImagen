@@ -20,8 +20,8 @@
 	<a href="albumes.php">Albumes</a><br><br>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
-    $idUsuario = 1;
-    $imagenes = $webImagen -> obtenerImgsPerfil($idUsuario);
+    $login = $_SESSION['login'];
+    $imagenes = $webImagen -> obtenerImgsPerfil($login);
     $maxImgs = 10;
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
             $maxImgs != 0; $i--) {

@@ -18,7 +18,7 @@
 	<?php
 	$nombreImagen = $_FILES["imagen"]["name"];
 	$rutaTemporal = $_FILES["imagen"]["tmp_name"];
-	$idAlbum = 2;
+	$idAlbum = $_POST['idAlbum'];
 	$webImagen = WebImagenDAO::getInstancia();
 	$msg = $webImagen -> subirImg($idAlbum,
 		$nombreImagen,$rutaTemporal,'...');
@@ -29,7 +29,7 @@
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
 	<img height='400'
-		src = '../<?php echo "imagenes/".$nombreImagen?>'>
+		src = '../<?php echo "imagenes/".$idAlbum.$nombreImagen?>'>
 	<br>Hola como estan!<br><br>
 	<a href='<?php echo $_SERVER["HTTP_REFERER"];?>'>Volver</a>
 	</center>

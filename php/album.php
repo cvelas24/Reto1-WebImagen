@@ -1,6 +1,9 @@
 <?php
 	require_once ('../accesoDB/webimagenDAO.php');
 	session_start();
+	if(sizeof($_POST) > 0)
+		$_SESSION['idAlbum'] = $_POST['idAlbum'];
+	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,7 +24,7 @@
 	<a href="perfil.php">Perfil de...</a><br><br>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
-    $idAlbum = $_POST['idAlbum'];
+    $idAlbum = $_SESSION['idAlbum'];
     $imagenes = $webImagen -> obtenerImgsAlbum($idAlbum);
     $maxImgs = 10;
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
@@ -47,6 +50,8 @@
 		</td>
 	</tr>
 	</table>
+	<input type='hidden' name='idAlbum' 
+		value='<?php echo $idAlbum?>'>
 	<input type="submit" name="submit" value="Cargar">
 	</form>
 	</center>

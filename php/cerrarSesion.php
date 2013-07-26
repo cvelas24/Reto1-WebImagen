@@ -1,5 +1,7 @@
 <?php
-	require_once ('../accesoDB/webimagenDAO.php');
+	session_start();
+	$nombre = $_SESSION["nombre"];
+	session_destroy();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -15,16 +17,8 @@
 </head>
 <body>
 	<center>
-		<a href="../index.php"><h1>WebImagen</h1></a>
+	<a href="../index.php"><h1>WebImagen</h1></a>
+	<?php echo "<h3>Hasta la proxima, $nombre</h3>" ?>
 	</center>
-	<?php
-	//Subir un nuevo album
-	$login = $_POST['login'];
-	$album = $_POST['album'];
-	$desc = $_POST['desc'];
-	$webImagen = WebImagenDAO::getInstancia();
-	$msg = $webImagen -> crearAlbum($login, $album, $desc);
-	echo "<h3>$msg<h3>"
-	?>
 </body>
 </html>

@@ -46,7 +46,8 @@ class WebImagenDAO {
         
     }
 
-    public function crearAlbum($idUsuario, $nombre, $descripcion){
+    public function crearAlbum($login, $nombre, $descripcion){
+        $idUsuario = $this->obtenerIdUsuario($login);
         $query = mysql_query("INSERT INTO 
             albumes(usuario, nombre, descripcion) VALUES 
             ('$idUsuario', '$nombre', '$descripcion')");
@@ -65,10 +66,10 @@ class WebImagenDAO {
     	}else{
     		mysql_query("INSERT INTO 
     			imagenes(album, ruta, descripcion) VALUES 
-    			($idAlbum,'$carpetaServidor$nombreImagen','
-                    $descripcion')");
+    			($idAlbum,'$carpetaServidor$idAlbum$nombreImagen',
+                    '$descripcion')");
     		move_uploaded_file($rutaTemporal, 
-    			'../'.$carpetaServidor . $nombreImagen);
+    			'../'.$carpetaServidor.$idAlbum.$nombreImagen);
             return 'Imagen subida con exito';
         }
     }
@@ -84,7 +85,8 @@ class WebImagenDAO {
     }
 
     //Cargar las fotos de un usuario
-    public function obtenerImgsPerfil($idUsuario){
+    public function obtenerImgsPerfil($login){
+        $idUsuario = $this->obtenerIdUsuario($login);
         $query = mysql_query("SELECT * FROM 
             imagenes AS i, albumes AS a WHERE 
             i.album = a.id AND a.usuario ='$idUsuario'");
@@ -107,7 +109,8 @@ class WebImagenDAO {
     }
 
     //Cargar los albumes de un usuario
-    public function obtenerAlbumes($idUsuario){
+    public function obtenerAlbumes($login){
+        $idUsuario = $this->obtenerIdUsuario($login);
         $query = mysql_query("SELECT * FROM albumes
             WHERE usuario = '$idUsuario'");
         $albumes = array();
@@ -115,6 +118,13 @@ class WebImagenDAO {
             $albumes[] = $r;
         }
         return $albumes;
+    }
+
+    public function obtenerIdUsuario($login){
+        $query = mysql_query("SELECT id FROM 
+            usuarios WHERE login ='$login'");
+        $datos = mysql_fetch_array($query);
+        return $datos[0];
     }
 }
 ?>
