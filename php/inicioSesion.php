@@ -13,7 +13,7 @@
 <body>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<h3>Registro</h3>
+	<h3>Iniciar Sesion en WebImagen</h3>
 	<form action="iniciarSesion.php" method="post"
 	enctype="multipart/form-data" onsubmit="">
 		Usuario: <input type="text" name="login" id="login"><br>

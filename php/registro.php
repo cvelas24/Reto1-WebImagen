@@ -13,7 +13,7 @@
 <body>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<h3>Registro</h3>
+	<h3>Registrarse en WebImagen</h3>
 	<form action="registrar.php" method="post"
 	enctype="multipart/form-data" onsubmit="">
 	<table border="0">

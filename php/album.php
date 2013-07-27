@@ -21,39 +21,40 @@
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
 	<a href="albumes.php">Albumes</a>
-	<a href="perfil.php">Perfil de...</a><br><br>
+	<a href="perfil.php"><?php echo $_SESSION['nombre']?></a>
+	<br><br>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
     $idAlbum = $_SESSION['idAlbum'];
     $imagenes = $webImagen -> obtenerImgsAlbum($idAlbum);
-    $maxImgs = 10;
-    for ($i = sizeof($imagenes) - 1; $i >= 0 &&
-            $maxImgs != 0; $i--) {
+    $datos = $webImagen -> obtenerDatosAlbum($idAlbum);
+    $nombre = $datos['nombre'];
+    $descripcion = $datos['descripcion'];
+    echo "<div><b>$nombre</b>: $descripcion</div><br>";
+    for ($i = sizeof($imagenes) - 1; $i >= 0; $i--) {
         $ruta = $imagenes[$i]['ruta'];
-        $descripcion = $imagenes[$i]['descripcion'];
+        $login = $_SESSION['login'];
+        $desc = $imagenes[$i]['descripcion'];
         echo "<form action='imagen.php' method='post'
 		enctype='multipart/form-data'>
 		<input type='image' src = '../$ruta' height='150'>
 		<input type='hidden' name='ruta' value='$ruta'>
+		<input type='hidden' name='login' value='$login'>
+        <input type='hidden' name='desc' value='$desc'>
 		</form>";
-        $maxImgs--;
     }
-    echo "<br><br>";
 	?>
-	<form action="subirImg.php" method="post"
+	<br>
+	</center>
+	<h3>Subir nueva imagen</h3>
+	<form action="subirImg.php" method="post" id="formImg"
 	enctype="multipart/form-data" onsubmit="return validarImg();">
 	<table border="0">
-	<tr>
-		<td>Imagen:</td>
-		<td>
-			<input type="file" name="imagen" id="imagen">
-		</td>
-	</tr>
-	</table>
-	<input type='hidden' name='idAlbum' 
+	Imagen:<input type="file" name="imagen" id="imagen"><br>
+	Descripcion:<input type="text" name="desc" id="desc"><br>
+	<input type='hidden' name='idAlbum' id="idAlbum"
 		value='<?php echo $idAlbum?>'>
 	<input type="submit" name="submit" value="Cargar">
 	</form>
-	</center>
 </body>
 </html>

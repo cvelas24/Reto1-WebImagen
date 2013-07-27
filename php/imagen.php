@@ -11,10 +11,15 @@
 	<title>WebImagen</title>
 </head>
 <body>
+	<?php
+		$ruta = $_POST["ruta"];
+		$login = $_POST['login'];
+		$desc = $_POST['desc'];
+	?>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<img src = '../<?php echo $_POST["ruta"];?>' height='400'>
-	<br>Hola como estan!<br><br>
+	<img src = '../<?php echo $ruta;?>' height='400'>
+	<div><?php echo "<b>".$login."</b>: ".$desc;?></div><br>
 	<a href='<?php echo $_SERVER["HTTP_REFERER"];?>'>Volver</a>
 	</center>
 </body>

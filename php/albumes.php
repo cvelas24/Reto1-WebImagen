@@ -17,12 +17,13 @@
 <body>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<a href="perfil.php">Perfil de...</a><br><br>
+	<a href="perfil.php"><?php echo $_SESSION['nombre']?></a>
+	<br><br>
 	<?php
 	//Cargar las fotos desde la db
     $webImagen = WebImagenDAO::getInstancia();
-    $login = $_SESSION['login'];
-    $albumes = $webImagen -> obtenerAlbumes($login);
+    $idUsuario = $_SESSION['idUsuario'];
+    $albumes = $webImagen -> obtenerAlbumes($idUsuario);
 	for($i = sizeof($albumes)-1; $i >= 0; $i--){
 		$idAlbum = $albumes[$i]['id'];
 		$nombre = $albumes[$i]['nombre'];
@@ -38,12 +39,14 @@
 	?>
 	<h4>Crear nuevo album</h4>
 	<form action="subirAlbum.php" method="post"
-	enctype="multipart/form-data" onsubmit="">
+	enctype="multipart/form-data" id = "formAlbum"
+	onsubmit="return validarAlbum();">
 	<table border="0">
 	<tr>
 		<td>Nombre: </td>
 		<td>
 			<input type="text" name="album" id="album">
+			<label id="errorAlbum" style="color:white"></label>
 		</td>
 	</tr>
 	<tr>
@@ -53,7 +56,8 @@
 		</td>
 	</tr>
 	</table>
-	<input type='hidden' name='login' value='<?php echo $login?>'>
+	<input type='hidden' name='idUsuario' 
+		value='<?php echo $idUsuario?>'>
 	<input type="submit" name="submit" value="Cargar">
 	</form>
 	</center>

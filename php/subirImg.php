@@ -15,22 +15,24 @@
 	<title>WebImagen</title>
 </head>
 <body>
+	<center>
+	<a href="../index.php"><h1>WebImagen</h1></a>
+	<h4>
 	<?php
 	$nombreImagen = $_FILES["imagen"]["name"];
 	$rutaTemporal = $_FILES["imagen"]["tmp_name"];
 	$idAlbum = $_POST['idAlbum'];
+	$desc = $_POST['desc'];
 	$webImagen = WebImagenDAO::getInstancia();
 	$msg = $webImagen -> subirImg($idAlbum,
-		$nombreImagen,$rutaTemporal,'...');
-	echo "<script language='JavaScript'> 
-		alert('$msg'); 
-		</script>";
+		$nombreImagen,$rutaTemporal, $desc);
+	$login = $_SESSION['login'];
+	echo $msg;
 	?>
-	<center>
-	<a href="../index.php"><h1>WebImagen</h1></a>
+	</h4>
 	<img height='400'
-		src = '../<?php echo "imagenes/".$idAlbum.$nombreImagen?>'>
-	<br>Hola como estan!<br><br>
+		src = '<?php echo "../imagenes/".$idAlbum.$nombreImagen?>'>
+	<div><?php echo "<b>".$login."</b>: ".$desc;?></div><br>
 	<a href='<?php echo $_SERVER["HTTP_REFERER"];?>'>Volver</a>
 	</center>
 </body>

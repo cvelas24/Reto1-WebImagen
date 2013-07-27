@@ -16,18 +16,23 @@
 </head>
 <body>
 	<center>
+	<h4>
 	<a href="../index.php"><h1>WebImagen</h1></a>
 	<?php
 	//Registrar un nuevo usuario
 	$login = $_POST['login'];
 	$password = $_POST['pwd'];
 	$webImagen = WebImagenDAO::getInstancia();
-	$nombre = $webImagen -> loguearUsuario($login, $password);
-	//Guardar nombre y login en sesion
+	$datosUser = $webImagen -> loguearUsuario($login, $password);
+	$nombre = $datosUser['nombre'];
+	//Guardar nombre y idUsuario en sesion
+	$_SESSION["idUsuario"] = $datosUser['id'];
 	$_SESSION["login"] = $login;
 	$_SESSION["nombre"] = $nombre;
-	echo "<h3>Bienvenido, $nombre</h3>"
+	echo "Bienvenido, $nombre"
 	?>
+	</h4>
+	<a href="perfil.php">Ir a mi perfil</a>
 	</center>
 </body>
 </html>

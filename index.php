@@ -8,8 +8,8 @@
             Iniciar Sesion</a>";
         $link2 = "<a href='php/registro.php'>Registrarse</a>";
     }else{
-        $n = $_SESSION['nombre'];
-        $link1 = "<a href='php/perfil.php'>$n</a>";
+        $nombre = $_SESSION['nombre'];
+        $link1 = "<a href='php/perfil.php'>$nombre</a>";
         $link2 = "<a href='php/cerrarSesion.php'>
             Cerrar Sesion</a>";
     }
@@ -59,11 +59,14 @@
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
             $maxImgs != 0; $i--) {
         $ruta = $imagenes[$i]['ruta'];
-        $descripcion = $imagenes[$i]['descripcion'];
+        $login = $imagenes[$i]['login'];
+        $desc = $imagenes[$i]['descripcion'];
         echo "<form action='php/imagen.php' method='post'
 		enctype='multipart/form-data'>
 		<input type='image' src = '$ruta' height='150'>
 		<input type='hidden' name='ruta' value='$ruta'>
+        <input type='hidden' name='login' value='$login'>
+        <input type='hidden' name='desc' value='$desc'>
 		</form>";
         $maxImgs--;
     }

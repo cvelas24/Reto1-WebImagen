@@ -20,17 +20,20 @@
 	<a href="albumes.php">Albumes</a><br><br>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
-    $login = $_SESSION['login'];
-    $imagenes = $webImagen -> obtenerImgsPerfil($login);
+    $idUsuario = $_SESSION['idUsuario'];
+    $imagenes = $webImagen -> obtenerImgsPerfil($idUsuario);
     $maxImgs = 10;
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
             $maxImgs != 0; $i--) {
         $ruta = $imagenes[$i]['ruta'];
-        $descripcion = $imagenes[$i]['descripcion'];
+        $login = $imagenes[$i]['login'];
+        $desc = $imagenes[$i]['descripcion'];
         echo "<form action='imagen.php' method='post'
 		enctype='multipart/form-data'>
 		<input type='image' src = '../$ruta' height='150'>
 		<input type='hidden' name='ruta' value='$ruta'>
+		<input type='hidden' name='login' value='$login'>
+        <input type='hidden' name='desc' value='$desc'>
 		</form>";
         $maxImgs--;
     }

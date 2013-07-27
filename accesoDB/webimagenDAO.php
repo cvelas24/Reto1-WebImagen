@@ -33,50 +33,48 @@ class WebImagenDAO {
     }
 
     public function loguearUsuario($login, $password){
-        $query = mysql_query("SELECT nombre FROM 
+        $query = mysql_query("SELECT id,nombre FROM 
             usuarios WHERE login ='$login' AND 
             password ='$password'");
         $datos = mysql_fetch_array($query);
         if(sizeof($datos) > 1){
-            $nombre = $datos[0];
-            return $nombre;
+            return $datos;
         }else{
             return "Error";
         }
         
     }
 
-    public function crearAlbum($login, $nombre, $descripcion){
-        $idUsuario = $this->obtenerIdUsuario($login);
-        $query = mysql_query("INSERT INTO 
+    //Crea un album y devuelve su id
+    public function crearAlbum($idUsuario, $nombre, $descripcion){
+        mysql_query("INSERT INTO 
             albumes(usuario, nombre, descripcion) VALUES 
             ('$idUsuario', '$nombre', '$descripcion')");
-        if(!$query)
-            return mysql_error();
-        else
-            return "Album $nombre creado";
+        $query = mysql_query("SELECT id FROM albumes 
+            WHERE nombre = '$nombre'");
+        $datos = mysql_fetch_array($query);
+        return $datos[0];
     }
     
     //Subir una imagen al servidor
-    public function subirImg(
-        $idAlbum, $nombreImagen, $rutaTemporal, $descripcion){
+    public function subirImg($idAlbum, $nombreImagen, 
+        $rutaTemporal, $descripcion){
     	$carpetaServidor = "imagenes/";
-    	if (file_exists('../'.$carpetaServidor . $nombreImagen)){
-            return 'Imagen ya existe';
-    	}else{
-    		mysql_query("INSERT INTO 
-    			imagenes(album, ruta, descripcion) VALUES 
-    			($idAlbum,'$carpetaServidor$idAlbum$nombreImagen',
-                    '$descripcion')");
-    		move_uploaded_file($rutaTemporal, 
-    			'../'.$carpetaServidor.$idAlbum.$nombreImagen);
-            return 'Imagen subida con exito';
-        }
+    	mysql_query("INSERT INTO 
+    		imagenes(album, ruta, descripcion) VALUES 
+    		($idAlbum,'$carpetaServidor$idAlbum$nombreImagen',
+                '$descripcion')");
+    	move_uploaded_file($rutaTemporal, 
+    		'../'.$carpetaServidor.$idAlbum.$nombreImagen);
+        return "Imagen subida con éxito";
     }
 
     //Cargar las fotos del inicio
     public function obtenerImgsInicio(){
-        $query = mysql_query("SELECT * FROM imagenes");
+        $query = mysql_query("SELECT login,ruta,i.descripcion
+            FROM imagenes AS i, albumes AS a, usuarios AS u 
+            WHERE a.id = i.album AND u.id = a.usuario
+            ORDER BY i.id");
         $imagenes = array();
         while ($r = mysql_fetch_assoc($query)) {
             $imagenes[] = $r;
@@ -85,11 +83,11 @@ class WebImagenDAO {
     }
 
     //Cargar las fotos de un usuario
-    public function obtenerImgsPerfil($login){
-        $idUsuario = $this->obtenerIdUsuario($login);
-        $query = mysql_query("SELECT * FROM 
-            imagenes AS i, albumes AS a WHERE 
-            i.album = a.id AND a.usuario ='$idUsuario'");
+    public function obtenerImgsPerfil($idUsuario){
+         $query = mysql_query("SELECT login,ruta,i.descripcion
+            FROM imagenes AS i, albumes AS a, usuarios AS u 
+            WHERE a.id = i.album AND u.id = a.usuario 
+            AND a.usuario ='$idUsuario' ORDER BY i.id");
         $imagenes = array();
         while ($r = mysql_fetch_assoc($query)) {
             $imagenes[] = $r;
@@ -99,8 +97,8 @@ class WebImagenDAO {
 
     //Cargar las fotos de un album
     public function obtenerImgsAlbum($idAlbum){
-        $query = mysql_query("SELECT * FROM imagenes
-            WHERE album = '$idAlbum'");
+        $query = mysql_query("SELECT ruta, descripcion
+            FROM imagenes WHERE album = '$idAlbum'");
         $imagenes = array();
         while ($r = mysql_fetch_assoc($query)) {
             $imagenes[] = $r;
@@ -108,9 +106,16 @@ class WebImagenDAO {
         return $imagenes;
     }
 
+    //Obtener los datos de un album
+    public function obtenerDatosAlbum($idAlbum){
+        $query = mysql_query("SELECT nombre,descripcion 
+            FROM albumes WHERE id = '$idAlbum'");
+        $datos = mysql_fetch_array($query);
+        return $datos;
+    }
+
     //Cargar los albumes de un usuario
-    public function obtenerAlbumes($login){
-        $idUsuario = $this->obtenerIdUsuario($login);
+    public function obtenerAlbumes($idUsuario){
         $query = mysql_query("SELECT * FROM albumes
             WHERE usuario = '$idUsuario'");
         $albumes = array();
@@ -120,9 +125,21 @@ class WebImagenDAO {
         return $albumes;
     }
 
-    public function obtenerIdUsuario($login){
-        $query = mysql_query("SELECT id FROM 
-            usuarios WHERE login ='$login'");
+    //Funcion para ver si ya se subio la misma imagen 
+    //al mismo album
+    public function validarImg($idAlbum, $ruta){
+        $query = mysql_query("SELECT count(*) FROM 
+            imagenes WHERE ruta ='imagenes/$idAlbum$ruta'");
+        $datos = mysql_fetch_array($query);
+        return $datos[0];
+    }
+
+    //Funcion para ver si el usuario en la sesion tiene un
+    //album con el mismo nombre
+    public function validarAlbum($idUsuario, $album){
+        $query = mysql_query("SELECT count(*) FROM 
+            albumes WHERE usuario ='$idUsuario' AND 
+            nombre = '$album'");
         $datos = mysql_fetch_array($query);
         return $datos[0];
     }
