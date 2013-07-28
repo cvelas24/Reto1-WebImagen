@@ -2,14 +2,20 @@
     require_once ('accesoDB/webimagenDAO.php');
     session_start();
     $link1;
-    $link2 = "";
+    $link2;
+    $inicio;
     if (sizeof($_SESSION) == 0){
         $link1 = "<a href='php/inicioSesion.php'>Iniciar Sesion</a>";
         $link2 = "<a href='php/registro.php'>Registrarse</a>";
+        $inicio = "<div class='container'><h1>WebImagen</h1>
+            <p class='lead'>Bienvenido a esta nueva plataforma 
+                para vivir tus fotos!</p>
+            </div>";
     }else{
         $nombre = $_SESSION['nombre'];
         $link1 = "<a href='php/perfil.php'>$nombre</a>";
         $link2 = "<a href='php/cerrarSesion.php'>Cerrar Sesion</a>";
+        $inicio = "<div class='container'><h1>Fotos recientes</h1></div>";
     }
 ?>
 <!DOCTYPE HTML>
@@ -43,11 +49,7 @@
     </div>
     <center>
     <div id="inicio" class="bs-masthead">
-        <div class="container">
-            <h1>WebImagen</h1>
-            <p class="lead">Bienvenido a esta nueva plataforma 
-                para vivir tus fotos!</p>
-        </div>
+       <?php echo $inicio ?>
     </div>
     <!--<div class="container">-->
     <?php
@@ -74,7 +76,6 @@
     <!--</div> -->
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/funcionalidad.js" type="text/javascript">
-    </script>
+    <script src="js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>
