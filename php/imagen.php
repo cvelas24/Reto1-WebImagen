@@ -47,11 +47,13 @@
 		$login = $_POST['login'];
 		$desc = $_POST['desc'];
 	?>
+    <div class="container">
 	<center>
-	<img src = '../<?php echo $ruta;?>' height='400'>
-	<div><?php echo "<b>".$login."</b>: ".$desc;?></div><br>
+    <legend><?php echo "<b>".$login."</b> ".$desc;?></legend>
+	<img src = '../<?php echo $ruta;?>' height='400'><br><br>
 	<a href='<?php echo $_SERVER["HTTP_REFERER"];?>'>Volver</a>
 	</center>
+    </div>
 	<script src="../js/jquery.js" type="text/javascript"></script>
     <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>

@@ -37,12 +37,12 @@
     </div>
     <div class="container">
     <center>
-    <legend>Imágenes de <?php echo $nombre?></legend>
+    <legend>Imágenes recientes de <?php echo $nombre?></legend>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
     $idUsuario = $_SESSION['idUsuario'];
     $imagenes = $webImagen -> obtenerImgsPerfil($idUsuario);
-    $maxImgs = 10;
+    $maxImgs = 20;
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
             $maxImgs != 0; $i--) {
         $ruta = $imagenes[$i]['ruta'];

@@ -49,7 +49,7 @@
 	</h4>
 	<img height='400'
 		src = '<?php echo "../imagenes/".$idAlbum.$nombreImagen?>'>
-	<div><?php echo "<b>".$login."</b>: ".$desc;?></div><br>
+	<h3><?php echo "<b>".$login."</b> ".$desc;?></h3><br>
 	<a href='<?php echo $_SERVER["HTTP_REFERER"];?>'>Volver</a>
 	</center>
 	<script src="../js/jquery.js" type="text/javascript"></script>

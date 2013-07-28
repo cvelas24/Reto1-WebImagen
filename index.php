@@ -53,7 +53,7 @@
     <?php
     $webImagen = WebImagenDAO::getInstancia();
     $imagenes = $webImagen -> obtenerImgsInicio();
-    $maxImgs = 10;
+    $maxImgs = 20;
     for ($i = sizeof($imagenes) - 1; $i >= 0 &&
             $maxImgs != 0; $i--) {
         $ruta = $imagenes[$i]['ruta'];
