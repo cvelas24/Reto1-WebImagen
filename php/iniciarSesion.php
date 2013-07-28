@@ -20,8 +20,6 @@
 	$password = $_POST['pwd'];
 	$webImagen = WebImagenDAO::getInstancia();
 	$datosUser = $webImagen -> loguearUsuario($login, $password);
-	$link1 = "";
-    $link2 = "";
 	if(sizeof($datosUser) > 1){
 		$nombre = $datosUser['nombre'];
 		//Guardar nombre y idUsuario en sesion
@@ -29,10 +27,12 @@
 		$_SESSION["login"] = $login;
 		$_SESSION["nombre"] = $nombre;
 		$link1 = "<a href='perfil.php'>$nombre</a>";
-        $link2 = "<a href='cerrarSesion.php'>Cerrar Sesion</a>";
+        $link2 = "<a href='albumes.php'>Mis albumes</a>";
+        $link3 = "<a href='cerrarSesion.php'>Cerrar Sesion</a>";
 	}else{
 		$link1 = "<a href='inicioSesion.php'>Iniciar Sesion</a>";
         $link2 = "<a href='registro.php'>Registrarse</a>";
+        $link3 = "";
 	}
 	?>
 	<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
@@ -48,6 +48,7 @@
             <ul class="nav navbar-nav">
                 <li><?php echo $link1; ?></li>
                 <li><?php echo $link2; ?></li>
+                <li><?php echo $link3; ?></li>
             </ul>
         </div>
     </div>

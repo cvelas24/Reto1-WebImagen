@@ -1,7 +1,16 @@
 <?php
 	require_once ('../accesoDB/webimagenDAO.php');
 	session_start();
-	$nombre = $_SESSION['nombre'];
+    if (sizeof($_SESSION) == 0){
+        $link1 = "<a href='inicioSesion.php'>Iniciar Sesion</a>";
+        $link2 = "<a href='registro.php'>Registrarse</a>";
+        $link3 = "";
+    }else{
+        $nombre = $_SESSION['nombre'];
+        $link1 = "<a href='perfil.php'>$nombre</a>";
+        $link2 = "<a href='albumes.php'>Mis albumes</a>";
+        $link3 = "<a href='cerrarSesion.php'>Cerrar Sesion</a>";
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -17,7 +26,7 @@
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
     <div class="container">
-        <a href="../index.php" class="navbar-brand">WebImagen</a>
+        <a href="index.php" class="navbar-brand">WebImagen</a>
         <button class="navbar-toggle" type="button" 
         data-toggle="collapse" data-target=".bs-navbar-collapse">
             <span class="icon-bar"></span>
@@ -26,9 +35,9 @@
         </button>
         <div class="nav-collapse collapse bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href='perfil.php'><?php echo $nombre?></a></li>
-                <li><a href='albumes.php'>Mis albumes</a></li>
-                <li><a href='cerrarSesion.php'>Cerrar Sesion</a></li>
+                <li><?php echo $link1; ?></li>
+                <li><?php echo $link2; ?></li>
+                <li><?php echo $link3; ?></li>
             </ul>
         </div>
     </div>
