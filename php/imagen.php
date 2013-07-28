@@ -26,7 +26,7 @@
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
     <div class="container">
-        <a href="index.php" class="navbar-brand">WebImagen</a>
+        <a href="../index.php" class="navbar-brand">WebImagen</a>
         <button class="navbar-toggle" type="button" 
         data-toggle="collapse" data-target=".bs-navbar-collapse">
             <span class="icon-bar"></span>

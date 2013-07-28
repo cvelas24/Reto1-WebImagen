@@ -54,7 +54,7 @@
 		<input type='hidden' name='login' value='$login'>
         <input type='hidden' name='desc' value='$desc'>
 		</form>";
-        $maxImgs--;
+        $maxImgs--; 
     }
     echo "<br><br>";
 	?>

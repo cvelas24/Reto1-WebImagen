@@ -12,8 +12,8 @@
     }else{
         $nombre = $_SESSION['nombre'];
         $link1 = "<a href='php/perfil.php'>$nombre</a>";
-        $link2 = "<a href='php/cerrarSesion.php'>Cerrar Sesion</a>";
-        $link3 = "<a href='cerrarSesion.php'>Cerrar Sesion</a>";
+        $link2 = "<a href='php/albumes.php'>Mis albumes</a>";
+        $link3 = "<a href='php/cerrarSesion.php'>Cerrar Sesion</a>";
         $inicio = "<div class='container'><h1>Fotos recientes</h1></div>";
     }
 ?>
