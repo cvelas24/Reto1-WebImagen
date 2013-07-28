@@ -13,13 +13,17 @@
 <body>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<h3>Iniciar Sesion en WebImagen</h3>
+	<h3>Iniciar sesion en WebImagen</h3>
 	<form action="iniciarSesion.php" method="post"
-	enctype="multipart/form-data" onsubmit="">
-		Usuario: <input type="text" name="login" id="login"><br>
-		Contraseña: <input type="password" name="pwd" id="pwd"><br>
+	enctype="multipart/form-data" id="formInicio"
+	onsubmit="return validarInicio()">
+		Usuario: <input type="text" name="login" id="login">
+		<label id="errorinilogin" class="error"></label><br>
+		Contraseña: <input type="password" name="pwd" id="pwd">
+		<label id="errorinipwd" class="error"></label><br>
 		<input type="submit" name="submit" value="Iniciar Sesion">
-	</form>
+	</form><br>
+	<label id="errormsgini" class="error"></label>
 	</center>
 </body>
 </html>

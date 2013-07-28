@@ -16,7 +16,7 @@
 </head>
 <body>
 	<center>
-	<h4>
+	<h3>
 	<a href="../index.php"><h1>WebImagen</h1></a>
 	<?php
 	//Registrar un nuevo usuario
@@ -24,15 +24,20 @@
 	$password = $_POST['pwd'];
 	$webImagen = WebImagenDAO::getInstancia();
 	$datosUser = $webImagen -> loguearUsuario($login, $password);
-	$nombre = $datosUser['nombre'];
-	//Guardar nombre y idUsuario en sesion
-	$_SESSION["idUsuario"] = $datosUser['id'];
-	$_SESSION["login"] = $login;
-	$_SESSION["nombre"] = $nombre;
-	echo "Bienvenido, $nombre"
+	if(sizeof($datosUser) > 1){
+		$nombre = $datosUser['nombre'];
+		//Guardar nombre y idUsuario en sesion
+		$_SESSION["idUsuario"] = $datosUser['id'];
+		$_SESSION["login"] = $login;
+		$_SESSION["nombre"] = $nombre;
+		echo "Bienvenido, $nombre</h3>";
+		echo "<a href='perfil.php'>Ir a mi perfil</a>";
+	}else{
+		echo "Usuario o contraseña no coinciden, 
+			vuelva a intentar</h3>";
+		echo "<a href='inicioSesion.php'>Iniciar sesion</a>";
+	}
 	?>
-	</h4>
-	<a href="perfil.php">Ir a mi perfil</a>
 	</center>
 </body>
 </html>

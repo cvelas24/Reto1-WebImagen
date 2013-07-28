@@ -17,7 +17,7 @@
 <body>
 	<center>
 	<a href="../index.php"><h1>WebImagen</h1></a>
-	<h4>
+	<h3>
 	<?php
 	//Subir un nuevo album
 	$idUsuario = $_POST['idUsuario'];
@@ -28,7 +28,7 @@
 	$_SESSION["idAlbum"] = $idAlbum;
 	echo "Album $album creado";
 	?>
-	</h4>
+	</h3>
 	<a href="album.php"><?php echo "Ir a ".$album?></a>
 	</center>
 </body>

@@ -4,14 +4,12 @@
     $link1;
     $link2 = "";
     if (sizeof($_SESSION) == 0){
-        $link1 = "<a href='php/inicioSesion.php'>
-            Iniciar Sesion</a>";
+        $link1 = "<a href='php/inicioSesion.php'>Iniciar Sesion</a>";
         $link2 = "<a href='php/registro.php'>Registrarse</a>";
     }else{
         $nombre = $_SESSION['nombre'];
         $link1 = "<a href='php/perfil.php'>$nombre</a>";
-        $link2 = "<a href='php/cerrarSesion.php'>
-            Cerrar Sesion</a>";
+        $link2 = "<a href='php/cerrarSesion.php'>Cerrar Sesion</a>";
     }
 ?>
 <!DOCTYPE HTML>
@@ -19,38 +17,38 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; 
         charset=utf-8">
-        <meta name="viewport" content="width=device-width, 
-        initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/estilo.css" />
+        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="css/estilo.css" rel="stylesheet"/>
         <title>WebImagen</title>
     </head>
     <body>
-    <center>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+    <div class="container">
+        <a href="index.php" class="navbar-brand">WebImagen</a>
+        <button class="navbar-toggle" type="button" 
+        data-toggle="collapse" data-target=".bs-navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="index.php">WebImagen</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li><?php echo $link1; ?></li>
-            <li><?php echo $link2; ?></li>
+        </button>
+        <div class="nav-collapse collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><?php echo $link1; ?></li>
+                <li><?php echo $link2; ?></li>
             </ul>
-          </div><!--/.nav-collapse -->
         </div>
-      </div>
     </div>
-    <h2>Bienvenido a WebImagen!</h2><br>
+    </div>
+    <center>
+    <div id="inicio" class="bs-masthead">
+        <div class="container">
+            <h1>WebImagen</h1>
+            <p class="lead">Bienvenido a esta nueva plataforma 
+                para vivir tus fotos!</p>
+        </div>
+    </div>
     <!--<div class="container">-->
     <?php
     $webImagen = WebImagenDAO::getInstancia();
@@ -74,12 +72,8 @@
     ?>
     </center>
     <!--</div> -->
-
-
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/jquery.js" type="text/javascript">
-    </script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/funcionalidad.js" type="text/javascript">
     </script>
 </body>

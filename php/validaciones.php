@@ -8,19 +8,17 @@ switch ($instr) {
 	case "validarImg":
 		$idAlbum = $_POST['idAlbum'];
 		$ruta = $_POST['ruta'];
-		$misma = $webImagen->validarImg($idAlbum, $ruta);
-		echo $misma;
+		echo $webImagen->validarImg($idAlbum, $ruta);
 		break;
 	 case "validarAlbum":
 	 	$idUsuario = $_POST['idUsuario'];
 	 	$album = $_POST['album'];
-	 	$mismo = $webImagen->validarAlbum($idUsuario, $album);
-	 	echo $mismo;
+	 	echo $webImagen->validarAlbum($idUsuario, $album);
 	 	break;
-	// case "validarImg":
-	// 	break;
-	// case "validarImg":
-	// 	break;
+	 case "validarReg":
+	 	$login = $_POST['login'];
+	 	echo $webImagen->validarReg($login);
+	 	break;
 	default:
 		break;
 }

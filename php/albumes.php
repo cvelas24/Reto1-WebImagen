@@ -46,7 +46,7 @@
 		<td>Nombre: </td>
 		<td>
 			<input type="text" name="album" id="album">
-			<label id="errorAlbum" style="color:white"></label>
+			<label id="errorAlbum" class="error"></label>
 		</td>
 	</tr>
 	<tr>

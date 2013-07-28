@@ -20,29 +20,20 @@ class WebImagenDAO {
         return self::$instancia;
     }
     
+    //Registrar un usuario nuevo
     public function registrarUsuario(
         $login, $password, $nombre, $apellido, $email){
-        $query = mysql_query("INSERT INTO 
-            usuarios(login, password, nombre, apellido, email) 
-            VALUES ('$login','$password','$nombre', 
-                '$apellido','$email')");
-        if(!$query)
-            return "Error, vuelva a intentar";
-        else
-            return "Gracias por registrarte $nombre";
+        $query = mysql_query("INSERT INTO usuarios(login, 
+            password, nombre, apellido, email) VALUES 
+        ('$login','$password','$nombre','$apellido','$email')");
     }
 
+    //Loguear un usuario al sistema
     public function loguearUsuario($login, $password){
         $query = mysql_query("SELECT id,nombre FROM 
             usuarios WHERE login ='$login' AND 
             password ='$password'");
-        $datos = mysql_fetch_array($query);
-        if(sizeof($datos) > 1){
-            return $datos;
-        }else{
-            return "Error";
-        }
-        
+        return mysql_fetch_array($query);
     }
 
     //Crea un album y devuelve su id
@@ -76,8 +67,8 @@ class WebImagenDAO {
             WHERE a.id = i.album AND u.id = a.usuario
             ORDER BY i.id");
         $imagenes = array();
-        while ($r = mysql_fetch_assoc($query)) {
-            $imagenes[] = $r;
+        while ($datos = mysql_fetch_assoc($query)) {
+            $imagenes[] = $datos;
         }
         return $imagenes;
     }
@@ -89,8 +80,8 @@ class WebImagenDAO {
             WHERE a.id = i.album AND u.id = a.usuario 
             AND a.usuario ='$idUsuario' ORDER BY i.id");
         $imagenes = array();
-        while ($r = mysql_fetch_assoc($query)) {
-            $imagenes[] = $r;
+        while ($datos = mysql_fetch_assoc($query)) {
+            $imagenes[] = $datos;
         }
         return $imagenes;
     }
@@ -100,8 +91,8 @@ class WebImagenDAO {
         $query = mysql_query("SELECT ruta, descripcion
             FROM imagenes WHERE album = '$idAlbum'");
         $imagenes = array();
-        while ($r = mysql_fetch_assoc($query)) {
-            $imagenes[] = $r;
+        while ($datos = mysql_fetch_assoc($query)) {
+            $imagenes[] = $datos;
         }
         return $imagenes;
     }
@@ -110,8 +101,7 @@ class WebImagenDAO {
     public function obtenerDatosAlbum($idAlbum){
         $query = mysql_query("SELECT nombre,descripcion 
             FROM albumes WHERE id = '$idAlbum'");
-        $datos = mysql_fetch_array($query);
-        return $datos;
+        return mysql_fetch_array($query);
     }
 
     //Cargar los albumes de un usuario
@@ -125,8 +115,15 @@ class WebImagenDAO {
         return $albumes;
     }
 
-    //Funcion para ver si ya se subio la misma imagen 
-    //al mismo album
+    //Validar si ya existe un usuario con el mismo login
+    public function validarReg($login){
+        $query = mysql_query("SELECT count(*) FROM 
+            usuarios WHERE login ='$login'");
+        $datos = mysql_fetch_array($query);
+        return $datos[0];
+    }
+
+    //Validar si ya se subio la misma imagen al mismo album
     public function validarImg($idAlbum, $ruta){
         $query = mysql_query("SELECT count(*) FROM 
             imagenes WHERE ruta ='imagenes/$idAlbum$ruta'");
@@ -134,8 +131,8 @@ class WebImagenDAO {
         return $datos[0];
     }
 
-    //Funcion para ver si el usuario en la sesion tiene un
-    //album con el mismo nombre
+    //Validar si el usuario en la sesion tiene un album con el 
+    //mismo nombre
     public function validarAlbum($idUsuario, $album){
         $query = mysql_query("SELECT count(*) FROM 
             albumes WHERE usuario ='$idUsuario' AND 

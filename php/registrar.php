@@ -15,20 +15,20 @@
 </head>
 <body>
 	<center>
-		<a href="../index.php"><h1>WebImagen</h1></a>
+	<a href="../index.php"><h1>WebImagen</h1></a>
 	<?php
-	require_once ('../accesoDB/webimagenDAO.php');
 	//Registrar un nuevo usuario
 	$login = $_POST['login'];
-	$password = $_POST['password'];
+	$password = $_POST['pwd'];
 	$nombre = $_POST['nombre'];
 	$apellido = $_POST['apellido'];
 	$email = $_POST['email'];
 	$webImagen = WebImagenDAO::getInstancia();
-	$msg = $webImagen -> registrarUsuario(
+	$webImagen -> registrarUsuario(
 		$login, $password, $nombre, $apellido, $email);
-	echo "<h3>$msg</h3>"
 	?>
+	<h3>Gracias por registrarte <?echo $nombre?></h3>
+	<a href="inicioSesion.php">Iniciar sesion</a>
 	</center>
 </body>
 </html>
