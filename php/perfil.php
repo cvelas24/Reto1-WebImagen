@@ -35,8 +35,9 @@
         </div>
     </div>
     </div>
+    <div class="container">
     <center>
-    <h3>Mis Fotos</h3>
+    <legend>Imágenes de <?php echo $nombre?></legend>
 	<?php
     $webImagen = WebImagenDAO::getInstancia();
     $idUsuario = $_SESSION['idUsuario'];
@@ -59,8 +60,9 @@
     echo "<br><br>";
 	?>
 	</center>
+    <div>
 	<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

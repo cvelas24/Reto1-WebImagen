@@ -57,7 +57,7 @@
 	<h3>
 	<?php
 	 if (sizeof($_SESSION) == 0){
-		echo "Usuario o contraseña no coinciden, 
+		echo "Usuario y/o contraseña inválidos, 
 			vuelva a intentar</h3>";
 	}else{
 		echo "Bienvenido, $nombre</h3>";
@@ -65,8 +65,8 @@
 	}
 	?>
 	</center>
-<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+	<script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

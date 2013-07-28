@@ -34,6 +34,8 @@
     </div>
     </div>
 	<center>
+  	<div class="container">
+	<legend>Albumes de <?php echo $nombre?></legend>
 	<?php
 	//Cargar las fotos desde la db
     $webImagen = WebImagenDAO::getInstancia();
@@ -45,14 +47,15 @@
 		$descripcion = $albumes[$i]['descripcion'];
 		echo "<form action='album.php' method='post'
 		enctype='multipart/form-data'>
-		<input type='submit' name='submit' value='$nombre'>
+		<input type='submit' name='submit' value='$nombre'
+		class='btn btn-primary'>
 		<input type='hidden' name='idAlbum' value='$idAlbum'>
 		<input type='hidden' name='nombre' value='$nombre'>
 		</form>";
 	}
-	echo "<br><br>";
 	?>
-	<h4>Crear nuevo album</h4>
+	<br><br>
+	<legend>Crear nuevo album</legend>
 	<form action="subirAlbum.php" method="post"
 	enctype="multipart/form-data" id = "formAlbum"
 	onsubmit="return validarAlbum();">
@@ -71,13 +74,14 @@
 		</td>
 	</tr>
 	</table>
-	<input type='hidden' name='idUsuario' 
-		value='<?php echo $idUsuario?>'>
-	<input type="submit" name="submit" value="Cargar">
+	<br>
+	<input type='hidden' name='idUsuario' value='<?php echo $idUsuario?>'>
+	<input type="submit" name="submit" class="btn btn-default" value="Cargar">
 	</form>
 	</center>
+	</div>
 	<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

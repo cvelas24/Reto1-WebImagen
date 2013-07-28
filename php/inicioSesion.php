@@ -32,20 +32,33 @@
     </div>
     </div>
 	<center>
-	<h3>Iniciar sesion en WebImagen</h3>
+	<legend>Iniciar sesion en WebImagen</legend>
 	<form action="iniciarSesion.php" method="post"
 	enctype="multipart/form-data" id="formInicio"
 	onsubmit="return validarInicio()">
-		Usuario: <input type="text" name="login" id="login">
-		<label id="errorinilogin" class="error"></label><br>
-		Contraseña: <input type="password" name="pwd" id="pwd">
-		<label id="errorinipwd" class="error"></label><br>
-		<input type="submit" name="submit" value="Iniciar Sesion">
+	<table border="0">
+	<tr>
+		<td>Usuario:</td>
+		<td>
+			<input type="text" name="login" id="login">
+			<label id="errorinilogin" class="error"></label>
+		</td>
+	</tr>
+	<tr>
+		<td>Contraseña:</td>
+		<td>
+			<input type="password" name="pwd" id="pwd">
+			<label id="errorinipwd" class="error"></label>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<input type="submit" class="btn btn-default" name="submit" value="Iniciar Sesion">
 	</form><br>
 	<label id="errormsgini" class="error"></label>
 	</center>
 	<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ $(document).ready(function(){
     //cargarFotosInicio();
 })
 
+$('.nav-tabs').button();
 //Funciones de validacion
 
 function validarReg(){

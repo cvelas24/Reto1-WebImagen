@@ -49,7 +49,7 @@
 	<a href="album.php"><?php echo "Ir a ".$album?></a>
 	</center>
 	<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

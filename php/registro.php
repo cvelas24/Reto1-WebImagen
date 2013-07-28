@@ -32,7 +32,7 @@
     </div>
     </div>
 	<center>
-	<h3>Registrarse en WebImagen</h3>
+	<legend>Registrarse en WebImagen</legend>
 	<form action="registrar.php" method="post" id="formReg"
 	enctype="multipart/form-data" onsubmit="return validarReg();">
 	<table border="0">
@@ -79,13 +79,14 @@
 		</td>
 	</tr>
 	</table>
-	<input type="submit" name="submit" value="Registrar">
+	<br>
+	<input type="submit" name="submit" class="btn btn-default" value="Registrar">
 	</form>
 	<br><br>
 	<label id="errormsgreg" class="error"></label>
 	</center>
 	<script src="../js/jquery.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/funcionalidad.js" type="text/javascript"></script>
 </body>
 </html>

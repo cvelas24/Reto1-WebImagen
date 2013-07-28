@@ -5,16 +5,14 @@
         $link1 = "<a href='php/inicioSesion.php'>Iniciar Sesion</a>";
         $link2 = "<a href='php/registro.php'>Registrarse</a>";
         $link3 = "";
-        $inicio = "<div class='container'><h1>WebImagen</h1>
-            <p class='lead'>Bienvenido a esta nueva plataforma 
-                para vivir tus fotos!</p>
-            </div>";
+        $inicio = "<h1>WebImagen</h1><p class='lead'>Bienvenido a esta 
+            nueva plataforma para vivir tus fotos!</p>";
     }else{
         $nombre = $_SESSION['nombre'];
         $link1 = "<a href='php/perfil.php'>$nombre</a>";
         $link2 = "<a href='php/albumes.php'>Mis albumes</a>";
         $link3 = "<a href='php/cerrarSesion.php'>Cerrar Sesion</a>";
-        $inicio = "<div class='container'><h1>Fotos recientes</h1></div>";
+        $inicio = "<h1>Fotos recientes</h1>";
     }
 ?>
 <!DOCTYPE HTML>

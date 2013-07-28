@@ -12,3 +12,7 @@ body {
 .error{
 	color:red;
 }
+
+.form-control{
+	width: 35%;
+}
