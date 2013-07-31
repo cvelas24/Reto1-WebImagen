@@ -1,6 +1,7 @@
 <?php
     require_once ('accesoDB/webimagenDAO.php');
     session_start();
+    
     if (sizeof($_SESSION) == 0){
         $link1 = "<a href='php/inicioSesion.php'>Iniciar Sesion</a>";
         $link2 = "<a href='php/registro.php'>Registrarse</a>";
